@@ -23,7 +23,7 @@ if new_ip_port:
     # 定义两个在线文件的原始URL
     original_file_urls = [
         'https://raw.githubusercontent.com/wokaotianshi123/zubotv/main/sichuan/sichuanzubo.txt',
-        'https://raw.githubusercontent.com/wokaotianshi123/zubotv/main/sichuan/%25E5%259B%259B%25E5%25B7%259D%25E7%2594%25B5%25E4%25BF%25A1%25E7%25BB%2584%25E6%2592%25AD.m3u'
+        'https://raw.githubusercontent.com/wokaotianshi123/zubotv/main/sichuan/sichuanzubo.m3u'
     ]
 
     # 遍历原始URL列表，并生成新的文件
