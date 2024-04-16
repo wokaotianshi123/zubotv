@@ -32,7 +32,7 @@ jobs:
           git config --local user.email "chenhua.xu@qq.com"
           git config --local user.name "wokaotianshi123"
           if [ -n "$(git status --porcelain)" ]; then
-            git add 四川组播.m3u sichuanzubo.txt
+            git add sichuanzubo.m3u sichuanzubo.txt
             git commit -m "Automatic update"
             git push
           else
