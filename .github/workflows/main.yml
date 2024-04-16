@@ -27,13 +27,14 @@ jobs:
       - name: Run gengxinip
         run: python ${{ github.workspace }}/gengxinip.py
      
-        
-      - name: 提交更改
+      - name: Commit results
         run: |
           git config --local user.email "chenhua.xu@qq.com"
           git config --local user.name "wokaotianshi123"
-          git add .
-          git commit *.txt -m "Add generated file"
-          git commit *.m3u -m "Add generated file"
-          #git pull --rebase
-          git push -f
+          if [ -n "$(git status --porcelain)" ]; then
+            git add 四川组播.m3u sichuanzubo.txt
+            git commit -m "Automatic update"
+            git push
+          else
+            echo "No changes detected, skipping commit."
+          fi
