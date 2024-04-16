@@ -1,90 +1,52 @@
 import requests
 import re
-import socket
+import random
 
-# 定义fofa链接
-fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjaXR5PSJDaGVuZ2R1Ig%3D%3D'
+# 定义一个函数来获取包含特定端口的IP和端口列表
+def get_unique_ip_port(port_list):
+    response = requests.get('https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjaXR5PSJDaGVuZ2R1Ig%3D%3D')
+    if response.status_code == 200:
+        lines = response.text.split('\n')
+        ips_ports = set()  # 使用集合来避免重复
+        for line in lines:
+            match = re.search(r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):(\d+)', line)
+            if match and any(str(port) in match.group(2) for port in port_list):
+                ips_ports.add((match.group(1), match.group(2)))
+        return list(ips_ports)
+    return []
 
-# 尝试从fofa链接提取IP地址和端口号，并去除重复项，排除特定的IP网段
-def extract_unique_ip_ports(fofa_url):
-    try:
-        response = requests.get(fofa_url)
-        html_content = response.text
-        # 正则表达式匹配IP地址和端口号
-        ips_ports = re.findall(r'(\d+\.\d+\.\d+\.\d+:\d+)', html_content)
-        # 过滤掉特定的IP网段
-        unique_ips_ports = [ip_port for ip_port in ips_ports if not (ip_port.startswith('118.122') or ip_port.startswith('139.200'))]
-        return unique_ips_ports if unique_ips_ports else None
-    except requests.RequestException as e:
-        print(f"请求错误: {e}")
-        return None
+# 从给定的IP和端口列表中随机选择一个唯一的IP和端口
+def choose_unique_ip_port(ips_ports):
+    if ips_ports:
+        return random.choice(ips_ports)
+    return None
 
-# 检查IP地址和端口的连通性
-def check_ip_port_connectivity(ip_port):
-    try:
-        # 解析IP地址和端口
-        ip, port_str = ip_port.split(':')
-        port = int(port_str)
-        # 目标地址
-        target_address = f'/udp/239.93.0.184:5140'
-        # 创建UDP socket
-        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
-            # 尝试连接
-            s.settimeout(5)
-            result = s.connect_ex((ip, port))
-            if result == 0:
-                print(f'IP地址 {ip_port} 与目标 {target_address} 连通。')
-                return True
-            else:
-                print(f'IP地址 {ip_port} 与目标 {target_address} 不连通。')
-                return False
-    except Exception as e:
-        print(f'检查 {ip_port} 时出错: {e}')
-        return False
+# 定义端口列表
+port_list = ['8889', '888', '8123']
 
-# 提取不包含特定IP网段的唯一IP地址和端口号
-unique_ips_ports = extract_unique_ip_ports(fofa_url)
+# 获取IP和端口列表
+ips_ports = get_unique_ip_port(port_list)
 
-# 如果成功提取了唯一的IP地址和端口号
-if unique_ips_ports:
-    print("提取到的唯一IP地址和端口号（排除特定网段）:")
-    for ip_port in unique_ips_ports:
-        print(ip_port)
+# 选择一个唯一的IP和端口
+unique_ip_port = choose_unique_ip_port(ips_ports)
+
+if unique_ip_port:
+    # 定义文件URL集合
+    file_urls = [
+        'https://raw.githubusercontent.com/wokaotianshi123/zubotv/main/sichuanzubo.txt',
+        'https://raw.githubusercontent.com/wokaotianshi123/zubotv/main/sichuanzubo.m3u'
+    ]
     
-    # 测试每个IP地址和端口号，直到找到一个可访问的
-    accessible_ip_port = None
-    for ip_port in unique_ips_ports:
-        if check_ip_port_connectivity(ip_port):
-            accessible_ip_port = ip_port
-            break
-
-    if accessible_ip_port:
-        # 定义需要更新的文件列表
-        files_to_update = [
-            {'url': 'https://gitjs.wokaotianshi123.cloudns.org/https://raw.githubusercontent.com/wokaotianshi123/zubotv/main/sichuanzubo.txt', 'filename': 'sichuanzubo.txt'},
-            {'url': 'https://gitjs.wokaotianshi123.cloudns.org/https://raw.githubusercontent.com/wokaotianshi123/zubotv/main/sichuanzubo.m3u', 'filename': 'sichuanzubo.m3u'}
-        ]
-
-        # 更新文件中的IP地址和端口号
-        for file_info in files_to_update:
-            try:
-                # 读取原始文件内容
-                response = requests.get(file_info['url'])
-                file_content = response.text
-
-                # 替换文件中的IP地址和端口号
-                # 这里我们假设文件中的URL格式为 http://IP:PORT/udp/239.93.0.184:5140
-                updated_content = re.sub(r'(http://\d+\.\d+\.\d+\.\d+:\d+)', f'http://{accessible_ip_port}', file_content)
-
-                # 保存更新后的内容到新文件
-                with open(file_info['filename'], 'w', encoding='utf-8') as file:
-                    file.write(updated_content)
-
-                print(f"文件 {file_info['filename']} 已更新并保存。")
-            except requests.RequestException as e:
-                print(f"无法更新文件 {file_info['filename']}，错误: {e}")
-
-    else:
-        print("没有找到可访问的IP地址和端口号。")
+    # 遍历URL集合，修改并保存每个文件的内容
+    for url in file_urls:
+        response = requests.get(url)
+        if response.status_code == 200:
+            content = response.text
+            # 替换文件内容中的IP和端口
+            modified_content = re.sub(r'(http://[\d\.]+):(\d+)', f'http://{unique_ip_port[0]}:{unique_ip_port[1]}', content)
+            # 保存修改后的内容到本地文件
+            with open(url.split('/')[-1], 'w', encoding='utf-8') as file:
+                file.write(modified_content)
+            print(f"File {url.split('/')[-1]} has been modified and saved.")
 else:
-    print("没有提取到IP地址和端口号。")
+    print("No unique IP and port available to modify the files.")
