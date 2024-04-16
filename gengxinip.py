@@ -1,17 +1,19 @@
 import requests
-import socket
 import re
+import socket
 
 # 定义fofa链接
 fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjaXR5PSJDaGVuZ2R1Ig%3D%3D'
 
-# 尝试从fofa链接提取IP地址和端口号，并去除重复项
+# 尝试从fofa链接提取IP地址和端口号，并去除重复项，排除特定的IP网段
 def extract_unique_ip_ports(fofa_url):
     try:
         response = requests.get(fofa_url)
         html_content = response.text
+        # 正则表达式匹配IP地址和端口号
         ips_ports = re.findall(r'(\d+\.\d+\.\d+\.\d+:\d+)', html_content)
-        unique_ips_ports = list(set(ips_ports))  # 去除重复的IP地址和端口号
+        # 过滤掉特定的IP网段
+        unique_ips_ports = [ip_port for ip_port in ips_ports if not (ip_port.startswith('118.122') or ip_port.startswith('139.200'))]
         return unique_ips_ports if unique_ips_ports else None
     except requests.RequestException as e:
         print(f"请求错误: {e}")
@@ -40,12 +42,12 @@ def check_ip_port_connectivity(ip_port):
         print(f'检查 {ip_port} 时出错: {e}')
         return False
 
-# 提取唯一的IP地址和端口号
+# 提取不包含特定IP网段的唯一IP地址和端口号
 unique_ips_ports = extract_unique_ip_ports(fofa_url)
 
 # 如果成功提取了唯一的IP地址和端口号
 if unique_ips_ports:
-    print("提取到的唯一IP地址和端口号:")
+    print("提取到的唯一IP地址和端口号（排除特定网段）:")
     for ip_port in unique_ips_ports:
         print(ip_port)
     
@@ -71,6 +73,7 @@ if unique_ips_ports:
                 file_content = response.text
 
                 # 替换文件中的IP地址和端口号
+                # 这里我们假设文件中的URL格式为 http://IP:PORT/udp/239.93.0.184:5140
                 updated_content = re.sub(r'(http://\d+\.\d+\.\d+\.\d+:\d+)', f'http://{accessible_ip_port}', file_content)
 
                 # 保存更新后的内容到新文件
