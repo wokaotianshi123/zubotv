@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: 3.x
       - name: Install dependencies
-        run: pip install requests socket
+        run: pip install requests
       - name: Run gengxinip
         run: python ${{ github.workspace }}/gengxinip.py
      
