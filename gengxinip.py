@@ -24,7 +24,7 @@ if ips_ports:
     for ip_port in ips_ports:
         new_link = f'http://{ip_port}/udp/239.93.0.184:5140'
         try:
-            response = requests.get(new_link, timeout=10)
+            response = requests.get(new_link, timeout=100)
             if response.status_code == 200:
                 print(f'找到可访问的链接: {new_link}')
                 # 采用这个IP地址和端口号进行后续操作
