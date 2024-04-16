@@ -22,7 +22,7 @@ def choose_unique_ip_port(ips_ports):
     return None
 
 # 定义端口列表
-port_list = ['8889', '888', '8123']
+port_list = ['8889', '8123']
 
 # 获取IP和端口列表
 ips_ports = get_unique_ip_port(port_list)
