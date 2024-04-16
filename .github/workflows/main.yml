@@ -1,0 +1,39 @@
+name: genngxinzubo
+on:
+   push:
+   schedule:
+    - cron: '0 2,11 * * *'
+   workflow_dispatch:
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 2
+          keep_minimum_runs: 6 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Install dependencies
+        run: pip install selenium requests futures eventlet
+      - name: Run gengxinip
+        run: python ${{ github.workspace }}/gengxinip.py
+     
+        
+      - name: 提交更改
+        run: |
+          git config --local user.email "chenhua.xu@qq.com"
+          git config --local user.name "wokaotianshi123"
+          git add .
+          git commit *.txt -m "Add generated file"
+          git commit *.m3u -m "Add generated file"
+          #git pull --rebase
+          git push -f
