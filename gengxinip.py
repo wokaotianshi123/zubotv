@@ -2,7 +2,7 @@ import requests
 import re
 
 # 定义fofa链接
-fofa_url = 'https://fofa.info/result?qbase64=dWRweHkmJmNpdHk9IkNoZW5nZHUi'
+fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjaXR5PSJDaGVuZ2R1Ig%3D%3D'
 
 # 尝试从fofa链接提取IP地址和端口号
 def extract_ip_ports(fofa_url):
