@@ -1,6 +1,7 @@
 import requests
 import re
 import socket
+import urllib.request
 
 # 定义fofa链接
 fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjaXR5PSJDaGVuZ2R1Ig%3D%3D'
@@ -23,14 +24,22 @@ def extract_unique_ip_ports(fofa_url):
 # 检查HTTP服务的可达性
 def check_http_service_connectivity(ip_port):
     try:
-        # 尝试连接IP和端口
-        ip, port_str = ip_port.split(':')
-        port = int(port_str)
-        with socket.create_connection((ip, port), timeout=5) as sock:
-            if sock:
+        # 构造完整的URL
+        url = f"http://{ip_port}/udp/239.93.0.184:2191:5140"
+        
+        # 设置超时时间
+        timeout = 0.3
+        # 发送请求
+        response = urllib.request.urlopen(url, timeout=timeout)
+        # 检查HTTP状态码
+        if response.getcode() == 200:
+            server_header = response.headers.get('Server')
+            if server_header and 'udpxy' in server_header:
+                print(f"访问 {ip_port} 成功，Server: udpxy")
                 return ip_port  # 返回可访问的服务的IP和端口
-    except (socket.timeout, socket.error, ValueError):
-        return None
+    except Exception as e:
+        print(f"访问 {ip_port} 失败: {e}")
+    return None
 
 # 更新文件中的IP地址和端口号
 def update_files(accessible_ip_port, files_to_update):
