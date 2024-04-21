@@ -15,7 +15,7 @@ def extract_unique_ip_ports(fofa_url):
         ips_ports = re.findall(r'(\d+\.\d+\.\d+\.\d+:\d+)', html_content)
         unique_ips_ports = list(set(ips_ports))  # 去除重复的IP地址和端口号
         # 排除端口为4022的IP地址和端口组合
-        unique_ips_ports = [ip_port for ip_port in unique_ips_ports if not int(ip_port.split(':')[-1]) == 4022]
+        unique_ips_ports = [ip_port for ip_port in unique_ips_ports if not int(ip_port.split(':')[-1]) == 4023]
         return unique_ips_ports if unique_ips_ports else None
     except requests.RequestException as e:
         print(f"请求错误: {e}")
