@@ -25,14 +25,15 @@ jobs:
       - name: Install dependencies
         run: pip install opencv-python requests 
       - name: Run gengxinip
-        run: python ${{ github.workspace }}/gengxinip.py
+        run: python ${{ github.workspace }}/gengxinsichuanip.py
+             python ${{ github.workspace }}/gengxinchongqingip.py
      
       - name: Commit results
         run: |
           git config --local user.email "chenhua.xu@qq.com"
           git config --local user.name "wokaotianshi123"
           if [ -n "$(git status --porcelain)" ]; then
-            git add sichuanzubo.m3u sichuanzubo.txt
+            git add *.m3u *.txt
             git commit -m "Automatic update"
             git push
           else
