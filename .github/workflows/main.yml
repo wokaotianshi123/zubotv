@@ -23,7 +23,10 @@ jobs:
         with:
           python-version: 3.x
       - name: Install dependencies
-        run: pip install requests cv2
+        #run: pip install requests cv2
+        run: pip install requests -i https://pypi.tuna.tsinghua.edu.cn/simple
+        run: pip install opencv-python -i https://pypi.tuna.tsinghua.edu.cn/simple
+        run: pip install Beautifulsoup4 -i https://pypi.tuna.tsinghua.edu.cn/simple
       - name: Run gengxinip
         run: python ${{ github.workspace }}/gengxinip.py
      
