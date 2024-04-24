@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: 3.x
       - name: Install dependencies
-        run: pip install opencv-python -i https://pypi.tuna.tsinghua.edu.cn/simple 
+        run: pip install opencv-python requests 
       - name: Run gengxinip
         run: python ${{ github.workspace }}/gengxinip.py
      
