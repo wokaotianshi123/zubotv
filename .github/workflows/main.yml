@@ -37,6 +37,6 @@ jobs:
             git add *.m3u *.txt
             git commit -m "Automatic update"
             git push
-          else
-            echo "No changes detected, skipping commit."
-          fi
+            else
+              echo "No changes detected, skipping commit."
+            fi
