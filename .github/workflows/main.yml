@@ -25,11 +25,11 @@ jobs:
       - name: Install dependencies
         run: pip install opencv-python requests 
       - name: Run HBDX
-        run: python ${{ github.workspace }}/HBDX.py
+        run: python ${{ github.workspace }}/AHBDX.py
       - name: Run GDDX
-        run: python ${{ github.workspace }}/GDDX.py
+        run: python ${{ github.workspace }}/AGDDX.py
       - name: Run HBLT
-        run: python ${{ github.workspace }}/HBLT.py
+        run: python ${{ github.workspace }}/AHBLT.py
      
       - name: Commit results
         run: |
