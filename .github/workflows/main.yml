@@ -2,7 +2,7 @@ name: genngxinzubo
 on:
    #push:
    schedule:
-    - cron: '0 */2 * * *'
+    - cron: '0 */1 * * *'
    workflow_dispatch:
  
 jobs:
@@ -26,6 +26,8 @@ jobs:
         run: pip install opencv-python requests 
       - name: Run HBDX
         run: python ${{ github.workspace }}/HBDX.py
+      - name: Run GDDX
+        run: python ${{ github.workspace }}/GDDX.py
      
       - name: Commit results
         run: |
