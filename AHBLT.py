@@ -88,7 +88,7 @@ if unique_ips_ports:
         # 定义需要更新的文件列表
         files_to_update = [
             {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBLT/HBLT.txt', 'filename': 'HBLT.txt'},
-            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBLT/HBLT.m3u', 'filename': 'HBLT.m3u'}
+            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBLT/HBLT.m3u', 'filename': 'BHBLT.m3u'}
         ]
 
         # 更新文件中的IP地址和端口号
