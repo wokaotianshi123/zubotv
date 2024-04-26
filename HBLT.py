@@ -87,8 +87,8 @@ if unique_ips_ports:
         print(f"找到可访问的视频流服务: {valid_ip}")
         # 定义需要更新的文件列表
         files_to_update = [
-            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBLT/HBLT.txt', 'filename': 'txt/HBLT.txt'},
-            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBLT/HBLT.m3u', 'filename': 'm3u/HBLT.m3u'}
+            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBLT/HBLT.txt', 'filename': 'HBLT.txt'},
+            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBLT/HBLT.m3u', 'filename': 'HBLT.m3u'}
         ]
 
         # 更新文件中的IP地址和端口号
