@@ -2,7 +2,7 @@ name: genngxinzubo
 on:
    #push:
    schedule:
-    - cron: '0 */1 * * *'
+    - cron: '30 */1 * * *'
    workflow_dispatch:
  
 jobs:
@@ -28,7 +28,7 @@ jobs:
         run: python ${{ github.workspace }}/HBDX.py
       - name: Run GDDX
         run: python ${{ github.workspace }}/GDDX.py
-      - name: Run GDDX
+      - name: Run HBLT
         run: python ${{ github.workspace }}/HBLT.py
      
       - name: Commit results
