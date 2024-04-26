@@ -24,10 +24,8 @@ jobs:
           python-version: 3.x
       - name: Install dependencies
         run: pip install opencv-python requests 
-      - name: Run gengxinsichuanip
-        run: python ${{ github.workspace }}/gengxinsichuanip.py
-      - name: Run gengxinchongqingip
-        run: python ${{ github.workspace }}/gengxinchongqingip.py
+      - name: Run HBDX
+        run: python ${{ github.workspace }}HBDX.py
      
       - name: Commit results
         run: |
