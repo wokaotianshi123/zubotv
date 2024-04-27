@@ -87,7 +87,7 @@ if unique_ips_ports:
         # 定义需要更新的文件列表
         files_to_update = [
             {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBDX/HBDX.txt', 'filename': '湖北电信.txt'},
-            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBDX/HBDX.m3u', 'filename': '湖北电信.m3u'}
+            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBDX/HBDX.m3u', 'filename': 'BHBDX.m3u'}
         ]
 
         # 更新文件中的IP地址和端口号
