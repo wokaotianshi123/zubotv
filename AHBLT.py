@@ -3,7 +3,7 @@ import re
 import cv2  # 导入OpenCV库
 
 # 定义fofa链接
-fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJnJlZ2lvbj0iSFVCRUki'   #湖北省
+fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjaXR5PSJDaGFuZ3NoYSI%3Dki'   #湖南长沙
 
 # 尝试从fofa链接提取IP地址和端口号，并去除重复项
 def extract_unique_ip_ports(fofa_url):
@@ -66,7 +66,7 @@ def update_files(accessible_ip_port, files_to_update):
             print(f"无法更新文件 {file_info['filename']}，错误: {e}")
 
 # 定义组播地址和端口
-urls_udp = "/udp/228.0.0.1:6108"
+urls_udp = "/udp/239.76.246.151:1234"
 
 # 提取唯一的IP地址和端口号
 unique_ips_ports = extract_unique_ip_ports(fofa_url)
@@ -87,8 +87,8 @@ if unique_ips_ports:
         print(f"找到可访问的视频流服务: {valid_ip}")
         # 定义需要更新的文件列表
         files_to_update = [
-            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBLT/HBLT.txt', 'filename': 'HBLT.txt'},
-            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBLT/HBLT.m3u', 'filename': 'BHBLT.m3u'}
+            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBLT/CSDX.txt', 'filename': 'CSDX.txt'},
+            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBLT/CSDX.m3u', 'filename': 'CSDX.m3u'}
         ]
 
         # 更新文件中的IP地址和端口号
