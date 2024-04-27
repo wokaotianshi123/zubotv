@@ -87,7 +87,7 @@ if unique_ips_ports:
         print(f"找到可访问的视频流服务: {valid_ip}")
         # 定义需要更新的文件列表
         files_to_update = [
-            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/GDDX/GDDX.txt', 'filename': 'GDDX.txt'},
+            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/GDDX/GDDX.txt', 'filename': '广东电信.txt'},
             {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/GDDX/GDDX.m3u', 'filename': 'BGDDX.m3u'}
         ]
 
