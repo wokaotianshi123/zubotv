@@ -24,7 +24,7 @@ jobs:
           python-version: 3.x
       - name: Install dependencies
         run: pip install opencv-python requests 
-      - name: Run HBDX
+      - name: Run CDDX
         run: python ${{ github.workspace }}/AHBDX.py
       - name: Run GDDX
         run: python ${{ github.workspace }}/AGDDX.py
