@@ -3,7 +3,7 @@ import re
 import cv2  # 导入OpenCV库
 
 # 定义fofa链接
-fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJnJlZ2lvbj0iSFVCRUki'   #湖北省
+fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjaXR5PSJDaGVuZ2R1Ig%3D%3D'   #四川
 fofa_url = 'https://fofa.info/result?qbase64=YmFzZV9wcm90b2NvbD0idWRwIiAmJiBjb3VudHJ5PSJDTiImJnJlZ2lvbj0iaHViZWki'   #湖北省
 # 尝试从fofa链接提取IP地址和端口号，并去除重复项
 def extract_unique_ip_ports(fofa_url):
@@ -87,7 +87,7 @@ if unique_ips_ports:
         print(f"找到可访问的视频流服务: {valid_ip}")
         # 定义需要更新的文件列表
         files_to_update = [
-            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBDX/HBDX.txt', 'filename': '湖北电信.txt'},
+            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBDX/HBDX.txt', 'filename': '成都电信.txt'},
             {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBDX/HBDX.m3u', 'filename': 'BHBDX.m3u'}
         ]
 
