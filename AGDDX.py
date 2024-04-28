@@ -4,7 +4,8 @@ import cv2  # 导入OpenCV库
 
 # 定义fofa链接
 #fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjaXR5PSJHdWFuZ3pob3Ui'   #广州市
-fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjaXR5PSJodWl6aG91Ig%3D%3D'   #惠州市
+#fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjaXR5PSJodWl6aG91Ig%3D%3D'   #惠州市
+fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjaXR5PSJqaWFuZ21lbiI%3D'   #江门市
 # 尝试从fofa链接提取IP地址和端口号，并去除重复项
 def extract_unique_ip_ports(fofa_url):
     try:
