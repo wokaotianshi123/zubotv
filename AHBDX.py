@@ -3,7 +3,7 @@ import re
 import cv2  # 导入OpenCV库
 
 # 定义fofa链接
-#fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJnJlZ2lvbj0iSFVCRUki'   #湖北省
+fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJnJlZ2lvbj0iSFVCRUki'   #湖北省
 fofa_url = 'https://fofa.info/result?qbase64=YmFzZV9wcm90b2NvbD0idWRwIiAmJiBjb3VudHJ5PSJDTiImJnJlZ2lvbj0iaHViZWki'   #湖北省
 # 尝试从fofa链接提取IP地址和端口号，并去除重复项
 def extract_unique_ip_ports(fofa_url):
