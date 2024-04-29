@@ -28,8 +28,6 @@ jobs:
         run: python ${{ github.workspace }}/AHBDX.py
       - name: Run GDDX
         run: python ${{ github.workspace }}/AGDDX.py
-      - name: Run HNDX
-        run: python ${{ github.workspace }}/AHNDX.py
         
       - name: Commit results
         run: |
