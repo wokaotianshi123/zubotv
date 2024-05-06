@@ -5,7 +5,8 @@ import cv2  # 导入OpenCV库
 # 定义fofa链接
 #fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjaXR5PSJjaGVuZ2R1Ig%3D%3D'   #四川成都
 #fofa_url = 'https://fofa.info/result?qbase64=YmFzZV9wcm90b2NvbD0idWRwIiAmJiBjb3VudHJ5PSJDTiImJnJlZ2lvbj0iaHViZWki'   #湖北省
-fofa_url = 'https://fofa.info/result?qbase64=YmFzZV9wcm90b2NvbD0idWRwIiAmJiBjb3VudHJ5PSJDTiIgJiYgY2l0eT0id3VoYW4i'   #武汉
+#fofa_url = 'https://fofa.info/result?qbase64=YmFzZV9wcm90b2NvbD0idWRwIiAmJiBjb3VudHJ5PSJDTiIgJiYgY2l0eT0id3VoYW4i'   #武汉
+fofa_url = 'https://fofa.info/result?qbase64=YmFzZV9wcm90b2NvbD0idWRwIiAmJiBjb3VudHJ5PSJDTiIgJiYgcmVnaW9uPSJIdW5hbiI%3D' #湖南
 # 尝试从fofa链接提取IP地址和端口号，并去除重复项
 def extract_unique_ip_ports(fofa_url):
     try:
@@ -67,7 +68,7 @@ def update_files(accessible_ip_port, files_to_update):
             print(f"无法更新文件 {file_info['filename']}，错误: {e}")
 
 # 定义组播地址和端口
-urls_udp = "/rtp/239.254.96.143:8932"
+urls_udp = "udp/239.76.251.87:9000"
 
 # 提取唯一的IP地址和端口号
 unique_ips_ports = extract_unique_ip_ports(fofa_url)
@@ -88,7 +89,7 @@ if unique_ips_ports:
         print(f"找到可访问的视频流服务: {valid_ip}")
         # 定义需要更新的文件列表
         files_to_update = [
-            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBDX/HBDX.txt', 'filename': '成都移动.txt'},
+            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBDX/HBDX.txt', 'filename': '湖南电信.txt'},
             {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBDX/HBDX.m3u', 'filename': 'BCDDX.m3u'}
         ]
 
