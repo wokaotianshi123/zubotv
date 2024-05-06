@@ -66,7 +66,7 @@ def update_files(accessible_ip_port, files_to_update):
             print(f"无法更新文件 {file_info['filename']}，错误: {e}")
 
 # 定义组播地址和端口
-urls_udp = "/udp/239.93.0.184:5140"
+urls_udp = "/udp/239.11.0.65:5140"
 
 # 提取唯一的IP地址和端口号
 unique_ips_ports = extract_unique_ip_ports(fofa_url)
@@ -87,7 +87,7 @@ if unique_ips_ports:
         print(f"找到可访问的视频流服务: {valid_ip}")
         # 定义需要更新的文件列表
         files_to_update = [
-            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBDX/HBDX.txt', 'filename': '成都电信.txt'},
+            {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBDX/HBDX.txt', 'filename': '成都移动.txt'},
             {'url': 'https://raw.githubusercontent.com/frxz751113/zubotv/main/HBDX/HBDX.m3u', 'filename': 'BCDDX.m3u'}
         ]
 
