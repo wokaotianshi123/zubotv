@@ -3,7 +3,7 @@ import re
 import cv2  # 导入OpenCV库
 
 # 定义fofa链接
-fofa_url = 'https://fofa.info/result?qbase64=YmFzZV9wcm90b2NvbD0idWRwIiAmJiBjb3VudHJ5PSJDTiIgJiYgcmVnaW9uPSJiZWlqaW5nIg%3D%3D'   #北京
+fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjb3VudHJ5PSJDTiIgJiYgcmVnaW9uPSJCZWlqaW5nIg%3D%3D'   #北京
 fofa_url = 'https://fofa.info/result?qbase64=YmFzZV9wcm90b2NvbD0idWRwIiAmJiBjb3VudHJ5PSJDTiIgJiYgY2l0eT0iY2hlbmdkdSI%3D'   #成都
 fofa_url = 'https://fofa.info/result?qbase64=YmFzZV9wcm90b2NvbD0idWRwIiAmJiBjb3VudHJ5PSJDTiIgJiYgcmVnaW9uPSJzaWNodWFuIg%3D%3D'   #四川
 #fofa_url = 'https://fofa.info/result?qbase64=YmFzZV9wcm90b2NvbD0idWRwIiAmJiBjb3VudHJ5PSJDTiImJnJlZ2lvbj0iaHViZWki'   #湖北省
