@@ -24,8 +24,6 @@ jobs:
           python-version: 3.x
       - name: Install dependencies
         run: pip install opencv-python requests 
-      - name: Run CDDX
-        run: python ${{ github.workspace }}/AHBDX.py
       - name: Run GDDX
         run: python ${{ github.workspace }}/AGDDX.py
         
@@ -34,7 +32,7 @@ jobs:
             git config --local user.email "actions@github.com"
             git config --local user.name "GitHub Action"
             if [ -n "$(git status --porcelain)" ]; then
-            git add *.m3u *.txt
+            git add  *.txt *.m3u
             git commit -m "Automatic update"
             git push
             else
