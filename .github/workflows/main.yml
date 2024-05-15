@@ -28,6 +28,8 @@ jobs:
         run: python ${{ github.workspace }}/gengxinsichuanip.py
       - name: Run gengxinchongqingip
         run: python ${{ github.workspace }}/gengxinchongqingip.py
+      - name: Run gengxinhunanip
+        run: python ${{ github.workspace }}/gengxinhunanip.py
      
       - name: Commit results
         run: |
