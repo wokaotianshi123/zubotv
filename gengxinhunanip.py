@@ -3,8 +3,8 @@ import re
 import cv2  # 导入OpenCV库
 
 # 定义fofa链接
-fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjaXR5PSJDaGFuZ3NoYSI%3D'
-# fofa_url = 'http://tonkiang.us/hoteliptv.php?page=1&pv=%E6%B9%96%E5%8D%97%E7%94%B5%E4%BF%A1'
+# fofa_url = 'https://fofa.info/result?qbase64=InVkcHh5IiAmJiBjaXR5PSJDaGFuZ3NoYSI%3D'
+fofa_url = 'http://tonkiang.us/hoteliptv.php?page=1&pv=%E6%B9%96%E5%8D%97%E7%94%B5%E4%BF%A1'
 
 
 # 尝试从fofa链接提取IP地址和端口号，并去除重复项
