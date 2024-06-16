@@ -1,16 +1,17 @@
 name: genngxinzubo
 on:
   # push:
-   schedule:
+  schedule:
     - cron: '0 */2 * * *'
-   workflow_dispatch:
- 
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
         with:
@@ -18,27 +19,43 @@ jobs:
           repository: ${{ github.repository }}
           retain_days: 2
           keep_minimum_runs: 6 
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.x
+
+      - name: Clear Python cache
+        run: |
+          python -m pip cache purge
+
       - name: Install dependencies
-        run: pip install opencv-python requests 
+        run: |
+          pip install numpy==1.21.0  # 根据需要替换为具体的版本号
+          pip install opencv-python requests
+
+      - name: Check installed versions
+        run: |
+          python -c "import numpy; print('numpy version:', numpy.__version__)"
+          python -c "import cv2; print('opencv-python version:', cv2.__version__)"
+
       - name: Run gengxinsichuanip
         run: python ${{ github.workspace }}/gengxinsichuanip.py
+
       - name: Run gengxinchongqingip
         run: python ${{ github.workspace }}/gengxinchongqingip.py
-     # - name: Run gengxinhunanip
-       # run: python ${{ github.workspace }}/gengxinhunanip.py
-     
+
+      # - name: Run gengxinhunanip
+      #   run: python ${{ github.workspace }}/gengxinhunanip.py
+
       - name: Commit results
         run: |
             git config --local user.email "actions@github.com"
             git config --local user.name "GitHub Action"
             if [ -n "$(git status --porcelain)" ]; then
-            git add *.m3u *.txt
-            git commit -m "Automatic update"
-            git push
+              git add *.m3u *.txt
+              git commit -m "Automatic update"
+              git push
             else
               echo "No changes detected, skipping commit."
             fi
