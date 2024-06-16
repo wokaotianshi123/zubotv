@@ -1,4 +1,5 @@
 name: genngxinzubo
+
 on:
   # push:
   schedule:
@@ -20,24 +21,20 @@ jobs:
           retain_days: 2
           keep_minimum_runs: 6 
 
-      - name: Set up Python
+      - name: Set up Python 3.8
         uses: actions/setup-python@v2
         with:
-          python-version: 3.x
+          python-version: 3.8  # 指定Python版本为3.8
 
-      - name: Clear Python cache
+      - name: Install setuptools
         run: |
-          python -m pip cache purge
+          pip install --upgrade pip  # 升级pip
+          pip install setuptools    # 安装setuptools
 
       - name: Install dependencies
         run: |
-          pip install numpy==1.21.0  # 根据需要替换为具体的版本号
-          pip install opencv-python requests
-
-      - name: Check installed versions
-        run: |
-          python -c "import numpy; print('numpy version:', numpy.__version__)"
-          python -c "import cv2; print('opencv-python version:', cv2.__version__)"
+          pip install opencv-python  # 根据需要安装opencv-python
+          pip install requests      # 安装requests库
 
       - name: Run gengxinsichuanip
         run: python ${{ github.workspace }}/gengxinsichuanip.py
@@ -45,17 +42,18 @@ jobs:
       - name: Run gengxinchongqingip
         run: python ${{ github.workspace }}/gengxinchongqingip.py
 
+      # 根据需要取消注释以下行
       # - name: Run gengxinhunanip
       #   run: python ${{ github.workspace }}/gengxinhunanip.py
 
       - name: Commit results
         run: |
-            git config --local user.email "actions@github.com"
-            git config --local user.name "GitHub Action"
-            if [ -n "$(git status --porcelain)" ]; then
-              git add *.m3u *.txt
-              git commit -m "Automatic update"
-              git push
-            else
-              echo "No changes detected, skipping commit."
-            fi
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Action"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add *.m3u *.txt
+            git commit -m "Automatic update"
+            git push
+          else
+            echo "No changes detected, skipping commit."
+          fi
