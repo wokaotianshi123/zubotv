@@ -68,7 +68,7 @@ def update_files(accessible_ip_port, files_to_update):
             print(f"无法更新文件 {file_info['filename']}，错误: {e}")
 
 # 定义组播地址和端口
-urls_udp = "/udp/239.94.0.1:5140"
+urls_udp = "/udp/239.94.0.31:5140"
 
 # 提取唯一的IP地址和端口号
 unique_ips_ports = extract_unique_ip_ports(fofa_url)
@@ -99,4 +99,5 @@ if unique_ips_ports:
         print("没有找到可访问的视频流服务。")
 else:
     print("没有提取到IP地址和端口号。")
+
 
